@@ -1,0 +1,1287 @@
+<!-- =========================================
+LOGIN PAGE
+SAVE AS login.html
+========================================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>STACKLY Login</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+
+<script src="https://unpkg.com/feather-icons"></script>
+
+<style>
+
+/* =========================================
+GLOBAL
+========================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+
+  font-family:'Inter',sans-serif;
+
+  background:
+  radial-gradient(circle at top left,#ff2d5520,transparent 25%),
+  radial-gradient(circle at bottom right,#7c3aed20,transparent 25%),
+  linear-gradient(135deg,#050816,#0b1023,#111936);
+
+  color:#fff;
+
+  overflow-x:hidden;
+}
+
+/* =========================================
+SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+
+  background:
+  linear-gradient(#ff2d55,#ff7a18);
+
+  border-radius:20px;
+}
+
+/* =========================================
+ULTRA NAVBAR
+========================================= */
+
+.ultra-navbar{
+
+    position:fixed;
+    top:20px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:92%;
+    height:90px;
+
+    padding:0 34px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+    );
+
+    backdrop-filter:blur(30px);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+    0 10px 50px rgba(0,0,0,0.45);
+
+    z-index:9999;
+
+    overflow:hidden;
+}
+
+.nav-glow{
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,45,85,0.18),
+    transparent 70%
+    );
+
+    top:-250px;
+    left:-150px;
+
+    animation:glowMove 8s linear infinite;
+}
+
+.nav-noise{
+
+    position:absolute;
+    inset:0;
+
+    opacity:0.04;
+
+    background-image:
+    radial-gradient(#fff 1px, transparent 1px);
+
+    background-size:4px 4px;
+
+    pointer-events:none;
+}
+
+/* =========================================
+LOGO
+========================================= */
+
+.ultra-logo-wrap{
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+    cursor:pointer;
+}
+
+.ultra-logo-box{
+
+    position:relative;
+
+    width:72px;
+    height:72px;
+
+    border-radius:24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+    145deg,
+    #ff2d55,
+    #ff7a18,
+    #ffb703
+    );
+
+    box-shadow:
+    0 12px 35px rgba(255,45,85,0.45);
+
+    transition:0.5s;
+}
+
+.ultra-logo-box span{
+
+    position:relative;
+    z-index:5;
+
+    font-size:30px;
+    font-weight:900;
+
+    color:#fff;
+}
+
+.logo-inner-glow{
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,255,255,0.35),
+    transparent 70%
+    );
+
+    animation:pulseGlow 4s infinite;
+}
+
+.logo-shine{
+
+    position:absolute;
+
+    width:40px;
+    height:180%;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.7),
+    transparent
+    );
+
+    transform:
+    rotate(25deg)
+    translateX(-140px);
+
+    animation:shineMove 4s infinite;
+}
+
+.ultra-logo-text h1{
+
+    font-size:34px;
+    line-height:1;
+
+    font-weight:900;
+
+    letter-spacing:-2px;
+
+    color:#fff;
+}
+
+.ultra-logo-text h1 span{
+
+    background:
+    linear-gradient(
+    90deg,
+    #ff2d55,
+    #ff7a18,
+    #ffd166
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.logo-line{
+
+    width:100%;
+    height:3px;
+
+    margin-top:10px;
+    margin-bottom:8px;
+
+    border-radius:100px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ff2d55,
+    #ff7a18,
+    transparent
+    );
+}
+
+.ultra-logo-text p{
+
+    color:#aeb7d1;
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+/* =========================================
+NAV LINKS
+========================================= */
+
+.ultra-links{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    list-style:none;
+}
+
+.ultra-links li a{
+
+    text-decoration:none;
+
+    color:#d7def0;
+
+    font-size:15px;
+    font-weight:600;
+
+    padding:14px 22px;
+
+    border-radius:16px;
+
+    transition:0.4s;
+}
+
+.ultra-links li a:hover{
+
+    color:#fff;
+
+    background:
+    rgba(255,255,255,0.08);
+}
+
+/* =========================================
+BUTTONS
+========================================= */
+
+.nav-actions{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.icon-btn{
+
+    width:50px;
+    height:50px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:0.4s;
+}
+
+.icon-btn:hover{
+
+    transform:
+    translateY(-4px);
+
+    background:
+    rgba(255,255,255,0.12);
+}
+
+.gradient-btn{
+
+    border:none;
+
+    padding:15px 28px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff2d55,
+    #ff7a18
+    );
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:0.4s;
+}
+
+.gradient-btn:hover{
+
+    transform:
+    translateY(-5px);
+
+    box-shadow:
+    0 15px 40px rgba(255,45,85,0.45);
+}
+
+/* =========================================
+LOGIN SECTION
+========================================= */
+
+.login-section{
+
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:180px 8% 120px;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.login-glow{
+
+  position:absolute;
+
+  width:900px;
+  height:900px;
+
+  border-radius:50%;
+
+  background:
+  radial-gradient(circle,
+  rgba(255,45,85,0.18),
+  transparent 70%);
+
+  animation:floatGlow 8s ease-in-out infinite;
+}
+
+.login-container{
+
+  position:relative;
+  z-index:2;
+
+  width:100%;
+  max-width:520px;
+
+  padding:50px;
+
+  border-radius:40px;
+
+  background:
+  linear-gradient(
+  145deg,
+  rgba(255,255,255,0.08),
+  rgba(255,255,255,0.03)
+  );
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(30px);
+
+  box-shadow:
+  0 30px 80px rgba(0,0,0,0.45);
+}
+
+.login-tag{
+
+  display:inline-flex;
+
+  padding:12px 22px;
+
+  border-radius:100px;
+
+  background:
+  rgba(255,255,255,0.05);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  margin-bottom:26px;
+}
+
+.login-container h2{
+
+  font-size:58px;
+
+  font-weight:900;
+
+  margin-bottom:16px;
+}
+
+.login-container h2 span{
+
+  background:
+  linear-gradient(
+  90deg,
+  #ff2d55,
+  #ff7a18,
+  #ffd166
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.login-container p{
+
+  color:#c6cee1;
+
+  line-height:1.8;
+
+  margin-bottom:40px;
+}
+
+/* =========================================
+FORM
+========================================= */
+
+.login-form{
+
+  display:flex;
+  flex-direction:column;
+
+  gap:24px;
+}
+
+.input-box{
+
+  position:relative;
+}
+
+.input-box input{
+
+  width:100%;
+  height:72px;
+
+  border:none;
+  outline:none;
+
+  padding:0 70px 0 24px;
+
+  border-radius:24px;
+
+  background:
+  rgba(255,255,255,0.05);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  color:#fff;
+
+  font-size:16px;
+
+  transition:0.4s;
+}
+
+.input-box input:focus{
+
+  border-color:
+  rgba(255,122,24,0.5);
+
+  box-shadow:
+  0 0 25px rgba(255,122,24,0.18);
+}
+
+.input-box input::placeholder{
+  color:#9ca7c5;
+}
+
+.input-icon{
+
+  position:absolute;
+
+  right:24px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  color:#c6cee1;
+}
+
+.form-options{
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-top:-6px;
+}
+
+.remember{
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  color:#c6cee1;
+
+  font-size:14px;
+}
+
+.remember input{
+  accent-color:#ff2d55;
+}
+
+.form-options a{
+
+  color:#ff9a57;
+
+  text-decoration:none;
+
+  font-size:14px;
+}
+
+.login-btn{
+
+  height:72px;
+
+  border:none;
+
+  border-radius:24px;
+
+  background:
+  linear-gradient(
+  135deg,
+  #ff2d55,
+  #ff7a18
+  );
+
+  color:#fff;
+
+  font-size:17px;
+  font-weight:800;
+
+  cursor:pointer;
+
+  transition:0.4s;
+
+  box-shadow:
+  0 15px 40px rgba(255,45,85,0.35);
+}
+
+.login-btn:hover{
+
+  transform:
+  translateY(-5px)
+  scale(1.02);
+}
+
+.or-divider{
+
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+  margin:10px 0;
+}
+
+.or-divider::before,
+.or-divider::after{
+
+  content:"";
+
+  flex:1;
+  height:1px;
+
+  background:
+  rgba(255,255,255,0.08);
+}
+
+.or-divider span{
+
+  color:#aeb7d1;
+
+  font-size:14px;
+}
+
+.social-login{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:18px;
+}
+
+.social-btn{
+
+  height:64px;
+
+  border:none;
+
+  border-radius:20px;
+
+  background:
+  rgba(255,255,255,0.05);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  color:#fff;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+
+  transition:0.4s;
+}
+
+.social-btn:hover{
+
+  transform:
+  translateY(-4px);
+
+  background:
+  rgba(255,255,255,0.12);
+}
+
+.signup-link{
+
+  text-align:center;
+
+  margin-top:30px;
+
+  color:#b6bfd8;
+}
+
+.signup-link a{
+
+  color:#ff9a57;
+
+  text-decoration:none;
+
+  font-weight:700;
+}
+
+/* =========================================
+FOOTER
+========================================= */
+
+.ultra-footer{
+
+    position:relative;
+
+    padding:100px 8% 40px;
+
+    background:
+    linear-gradient(
+    180deg,
+    #070b18 0%,
+    #050816 100%
+    );
+
+    border-top:
+    1px solid rgba(255,255,255,0.06);
+}
+
+.footer-content{
+
+  text-align:center;
+}
+
+.footer-content h2{
+
+  font-size:42px;
+
+  margin-bottom:18px;
+}
+
+.footer-content h2 span{
+
+  background:
+  linear-gradient(
+  90deg,
+  #ff2d55,
+  #ff7a18,
+  #ffd166
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.footer-content p{
+
+  color:#b6bfd8;
+
+  margin-bottom:40px;
+}
+
+.footer-socials{
+
+    display:flex;
+    justify-content:center;
+    gap:16px;
+
+    margin-bottom:40px;
+}
+
+.social-icon{
+
+    width:56px;
+    height:56px;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    color:#fff;
+
+    transition:0.4s;
+}
+
+.social-icon:hover{
+
+    transform:
+    translateY(-6px);
+
+    box-shadow:
+    0 15px 30px rgba(255,45,85,0.25);
+}
+
+.copyright{
+
+  text-align:center;
+
+  color:#8f9bb8;
+
+  padding-top:30px;
+
+  border-top:
+  1px solid rgba(255,255,255,0.08);
+}
+
+/* =========================================
+ANIMATIONS
+========================================= */
+
+@keyframes glowMove{
+
+    0%{
+        transform:translateX(0px);
+    }
+
+    50%{
+        transform:translateX(120px);
+    }
+
+    100%{
+        transform:translateX(0px);
+    }
+}
+
+@keyframes pulseGlow{
+
+    0%{
+        transform:scale(1);
+        opacity:0.6;
+    }
+
+    50%{
+        transform:scale(1.2);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:0.6;
+    }
+}
+
+@keyframes shineMove{
+
+    100%{
+
+        transform:
+        rotate(25deg)
+        translateX(220px);
+
+    }
+}
+
+@keyframes floatGlow{
+
+  0%,100%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-40px);
+  }
+}
+
+/* =========================================
+RESPONSIVE
+========================================= */
+
+@media(max-width:1100px){
+
+  .ultra-links{
+    display:none;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .ultra-navbar{
+
+    width:95%;
+    padding:0 18px;
+  }
+
+  .login-container{
+
+    padding:34px;
+  }
+
+  .login-container h2{
+
+    font-size:42px;
+  }
+
+  .social-login{
+
+    grid-template-columns:1fr;
+  }
+
+}
+
+/* =========================================
+HAMBURGER MENU
+========================================= */
+
+.hamburger-menu{
+    display:none;
+    flex-direction:column;
+    gap:6px;
+    cursor:pointer;
+    z-index:10001;
+}
+
+.hamburger-line{
+    width:26px;
+    height:3px;
+    background:linear-gradient(90deg,#ff2d55,#ff7a18);
+    border-radius:2px;
+    transition:0.3s;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(1){
+    transform:rotate(45deg) translateY(12px);
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(2){
+    opacity:0;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(3){
+    transform:rotate(-45deg) translateY(-12px);
+}
+
+.nav-mobile-menu{
+    display:none;
+    position:fixed;
+    top:90px;
+    left:50%;
+    transform:translateX(-50%);
+    width:92%;
+    background:linear-gradient(135deg,rgba(255,255,255,0.12),rgba(255,255,255,0.05));
+    backdrop-filter:blur(30px);
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,0.12);
+    padding:24px;
+    gap:12px;
+    flex-direction:column;
+    z-index:9998;
+    box-shadow:0 10px 50px rgba(0,0,0,0.5);
+}
+
+.nav-mobile-menu.active{
+    display:flex;
+}
+
+.nav-mobile-menu a{
+    text-decoration:none;
+    color:#fff;
+    padding:12px 16px;
+    display:flex;
+    align-items:center;
+    border-radius:12px;
+    transition:0.3s;
+    font-size:16px;
+}
+
+.nav-mobile-menu a:hover{
+    background:rgba(255,255,255,0.1);
+}
+
+@media(max-width:768px){
+    .hamburger-menu{
+        display:flex;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<!-- =========================================
+NAVBAR
+========================================= -->
+
+<nav class="ultra-navbar">
+
+    <div class="nav-glow"></div>
+    <div class="nav-noise"></div>
+
+    <div class="nav-left">
+
+        <a href="index.html">
+
+            <div class="ultra-logo-wrap">
+
+                <div class="ultra-logo-box">
+
+                    <div class="logo-inner-glow"></div>
+                    <div class="logo-shine"></div>
+
+                    <span>S</span>
+
+                </div>
+
+                <div class="ultra-logo-text">
+
+                    <h1>
+                        STAC<span>KLY</span>
+                    </h1>
+
+                    <div class="logo-line"></div>
+
+                    <p>
+                        Ultra Premium Experience
+                    </p>
+
+                </div>
+
+            </div>
+
+        </a>
+
+    </div>
+
+    <ul class="ultra-links">
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="Restaurant.html">Restaurants</a>
+        </li>
+
+        <li>
+            <a href="collections.html">Collections</a>
+        </li>
+
+        <li>
+            <a href="offers.html">Offers</a>
+        </li>
+
+    </ul>
+
+    <div class="nav-actions">
+
+        <button class="icon-btn">
+            <i data-feather="search"></i>
+        </button>
+
+        <!-- HAMBURGER MENU -->
+        <div class="hamburger-menu" id="hamburger">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="Restaurant.html">Restaurants</a>
+    <a href="collections.html">Collections</a>
+    <a href="offers.html">Offers</a>
+    <a href="login.html">Login</a>
+    <button class="gradient-btn" style="width:100%; margin-top:12px;" onclick="window.location.href='signup.html'">
+        <span>Get Started</span>
+    </button>
+</div>
+
+<!-- =========================================
+LOGIN SECTION
+========================================= -->
+
+<section class="login-section">
+
+  <div class="login-glow"></div>
+
+  <div class="login-container">
+
+    <div class="login-tag">
+      ⚡ Welcome Back To STACKLY
+    </div>
+
+    <h2>
+      Premium
+      <span>Login</span>
+    </h2>
+
+    <p>
+      Access your ultra premium food dashboard,
+      luxury offers and exclusive restaurant experiences.
+    </p>
+
+    <form class="login-form">
+
+      <div class="input-box">
+
+        <input
+        type="email"
+        placeholder="Enter your email">
+
+        <div class="input-icon">
+          <i data-feather="mail"></i>
+        </div>
+
+      </div>
+
+      <div class="input-box">
+
+        <input
+        type="password"
+        placeholder="Enter your password">
+
+        <div class="input-icon">
+          <i data-feather="lock"></i>
+        </div>
+
+      </div>
+
+      <div class="form-options">
+
+        <label class="remember">
+
+          <input type="checkbox">
+
+          Remember Me
+
+        </label>
+
+        <a href="#">
+          Forgot Password?
+        </a>
+
+      </div>
+
+      <button class="login-btn">
+        Login To Account
+       
+      </button>
+      <button type="button" class="login-btn" onclick="location.href='./index.html'">
+  Back To Home
+</button>
+      <div class="or-divider">
+        <span>OR CONTINUE WITH</span>
+      </div>
+
+      <div class="social-login">
+
+        <button class="social-btn">
+
+          <i data-feather="chrome"></i>
+
+          Google
+
+        </button>
+
+        <button class="social-btn">
+
+          <i data-feather="facebook"></i>
+
+          Facebook
+
+        </button>
+
+      </div>
+
+      <div class="signup-link">
+
+        Don’t have an account?
+
+        <a href="#">
+          Create Account
+        </a>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</section>
+
+<!-- =========================================
+FOOTER
+========================================= -->
+
+<footer class="ultra-footer">
+
+    <div class="footer-content">
+
+      <h2>
+        STAC<span>KLY</span>
+      </h2>
+
+      <p>
+        Futuristic food delivery with luxury UI experiences.
+      </p>
+
+      <div class="footer-socials">
+
+        <a href="#" class="social-icon">
+          <i data-feather="instagram"></i>
+        </a>
+
+        <a href="#" class="social-icon">
+          <i data-feather="twitter"></i>
+        </a>
+
+        <a href="#" class="social-icon">
+          <i data-feather="facebook"></i>
+        </a>
+
+        <a href="#" class="social-icon">
+          <i data-feather="youtube"></i>
+        </a>
+
+      </div>
+
+      <div class="copyright">
+        © 2026 STACKLY. All Rights Reserved.
+      </div>
+
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

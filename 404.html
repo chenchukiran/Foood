@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>STACKLY • Ultra Premium 404</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+
+<style>
+
+/* ===================================
+RESET
+=================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+
+  font-family:'Inter',sans-serif;
+
+  color:#fff;
+
+  overflow-x:hidden;
+  overflow-y:auto;
+
+  background:
+  radial-gradient(circle at top left,#ff2d5530,transparent 25%),
+  radial-gradient(circle at bottom right,#7c3aed25,transparent 25%),
+  linear-gradient(135deg,#03050f,#08101f,#101936);
+
+  position:relative;
+}
+
+/* ===================================
+SCROLLBAR
+=================================== */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(#ff2d55,#ff7a18);
+  border-radius:20px;
+}
+
+/* ===================================
+BACKGROUND
+=================================== */
+
+.glow{
+  position:fixed;
+
+  width:450px;
+  height:450px;
+
+  border-radius:50%;
+
+  filter:blur(120px);
+
+  opacity:.6;
+
+  pointer-events:none;
+}
+
+.glow1{
+  background:#ff2d55;
+  top:-180px;
+  left:-120px;
+}
+
+.glow2{
+  background:#7c3aed;
+  right:-120px;
+  bottom:-120px;
+}
+
+/* ===================================
+NAVBAR
+=================================== */
+
+.navbar{
+
+  width:92%;
+  max-width:1350px;
+
+  height:85px;
+
+  margin:25px auto 0;
+
+  padding:0 30px;
+
+  border-radius:28px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:
+  linear-gradient(
+  145deg,
+  rgba(255,255,255,0.08),
+  rgba(255,255,255,0.03)
+  );
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(20px);
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,0.4);
+
+  position:relative;
+  z-index:20;
+}
+
+/* LOGO */
+
+.logo-wrap{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    cursor:pointer;
+}
+.logo{
+
+  width:65px;
+  height:65px;
+
+  border-radius:22px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:28px;
+  font-weight:900;
+
+  background:
+  linear-gradient(
+  135deg,
+  #ff2d55,
+  #ff7a18
+  );
+
+  box-shadow:
+  0 12px 35px rgba(255,45,85,0.4);
+}
+
+.logo-text h1{
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:-2px;
+}
+
+.logo-text h1 span{
+
+  background:
+  linear-gradient(
+  90deg,
+  #ff2d55,
+  #ff7a18,
+  #ffd166
+  );
+  background-clip:text;  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.logo-text p{
+  font-size:12px;
+  color:#aab6d3;
+  letter-spacing:2px;
+  margin-top:5px;
+}
+
+/* NAV LINKS */
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.nav-links a{
+
+  text-decoration:none;
+  color:#d6def0;
+
+  padding:12px 20px;
+
+  border-radius:14px;
+
+  font-size:15px;
+  font-weight:600;
+
+  transition:.4s;
+}
+
+.nav-links a:hover{
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+}
+
+/* BUTTON */
+
+.nav-btn{
+
+  height:52px;
+  padding:0 24px;
+
+  border:none;
+  border-radius:16px;
+
+  background:
+  linear-gradient(
+  135deg,
+  #ff2d55,
+  #ff7a18
+  );
+
+  color:#fff;
+
+  font-size:15px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.4s;
+
+  box-shadow:
+  0 10px 30px rgba(255,45,85,0.35);
+}
+
+.nav-btn:hover{
+  transform:
+  translateY(-5px)
+  scale(1.03);
+}
+
+/* ===================================
+MAIN
+=================================== */
+
+.wrapper{
+
+  min-height:calc(100vh - 250px);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:70px 20px;
+}
+
+/* ===================================
+CARD
+=================================== */
+
+.card{
+
+  width:100%;
+  max-width:650px;
+
+  padding:70px 45px;
+
+  border-radius:36px;
+
+  text-align:center;
+
+  background:
+  linear-gradient(
+  145deg,
+  rgba(255,255,255,0.08),
+  rgba(255,255,255,0.03)
+  );
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(25px);
+
+  box-shadow:
+  0 25px 80px rgba(0,0,0,0.5);
+
+  position:relative;
+  z-index:10;
+}
+
+/* 404 */
+
+.error-number{
+
+  font-size:180px;
+  font-weight:900;
+
+  line-height:1;
+
+  margin-bottom:20px;
+
+  letter-spacing:-10px;
+
+  background:
+  linear-gradient(
+  180deg,
+  #ffffff,
+  rgba(255,255,255,0.2)
+  );
+
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+h2{
+
+  font-size:52px;
+  font-weight:900;
+
+  line-height:1.1;
+
+  margin-bottom:20px;
+}
+
+.description{
+
+  max-width:500px;
+
+  margin:0 auto 40px;
+
+  color:#c3cce0;
+
+  font-size:18px;
+  line-height:1.8;
+}
+
+/* BUTTONS */
+
+.buttons{
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  gap:18px;
+
+  flex-wrap:wrap;
+}
+
+.btn{
+
+  min-width:190px;
+  height:62px;
+
+  border:none;
+  border-radius:18px;
+
+  padding:0 30px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:16px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.4s;
+}
+
+.home-btn{
+
+  background:
+  linear-gradient(
+  135deg,
+  #ff2d55,
+  #ff7a18
+  );
+
+  color:#fff;
+
+  box-shadow:
+  0 15px 40px rgba(255,45,85,0.35);
+}
+
+.home-btn:hover{
+  transform:
+  translateY(-6px)
+  scale(1.03);
+}
+
+.back-btn{
+
+  background:
+  rgba(255,255,255,0.06);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  color:#fff;
+}
+
+.back-btn:hover{
+
+  background:
+  rgba(255,255,255,0.12);
+
+  transform:
+  translateY(-6px);
+}
+
+.footer-text{
+
+  margin-top:45px;
+
+  color:#9aa6c4;
+
+  font-size:13px;
+
+  letter-spacing:3px;
+
+  text-transform:uppercase;
+}
+
+/* ===================================
+FOOTER
+=================================== */
+
+.footer{
+
+  width:92%;
+  max-width:1350px;
+
+  margin:0 auto 30px;
+
+  padding:40px 35px;
+
+  border-radius:30px;
+
+  background:
+  linear-gradient(
+  145deg,
+  rgba(255,255,255,0.07),
+  rgba(255,255,255,0.03)
+  );
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(20px);
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,0.35);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+}
+
+.footer-left h3{
+  font-size:28px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.footer-left h3 span{
+
+  background:
+  linear-gradient(
+  90deg,
+  #ff2d55,
+  #ff7a18,
+  #ffd166
+  );
+
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.footer-left p{
+  color:#b8c2dd;
+  line-height:1.7;
+}
+
+.footer-links{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
+.footer-links a{
+  text-decoration:none;
+  color:#d5def2;
+  transition:.3s;
+}
+
+.footer-links a:hover{
+  color:#fff;
+}
+
+/* ===================================
+RESPONSIVE
+=================================== */
+
+@media(max-width:900px){
+
+  .navbar{
+    padding:0 20px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .error-number{
+    font-size:130px;
+  }
+
+  h2{
+    font-size:38px;
+  }
+}
+
+@media(max-width:768px){
+
+  body{
+    overflow-y:auto;
+  }
+
+  .wrapper{
+    padding:50px 18px;
+  }
+
+  .card{
+    padding:50px 24px;
+  }
+
+  .logo{
+    width:55px;
+    height:55px;
+    font-size:24px;
+  }
+
+  .logo-text h1{
+    font-size:24px;
+  }
+
+  .logo-text p{
+    display:none;
+  }
+
+  .nav-btn{
+    display:none;
+  }
+
+  .error-number{
+    font-size:100px;
+    letter-spacing:-5px;
+  }
+
+  h2{
+    font-size:32px;
+  }
+
+  .description{
+    font-size:16px;
+  }
+
+  .buttons{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .footer{
+    flex-direction:column;
+    text-align:center;
+  }
+}
+
+/* =========================================
+HAMBURGER MENU
+========================================= */
+
+.hamburger-menu{
+    display:none;
+    flex-direction:column;
+    gap:6px;
+    cursor:pointer;
+    z-index:10001;
+}
+
+.hamburger-line{
+    width:26px;
+    height:3px;
+    background:linear-gradient(90deg,#ff2d55,#ff7a18);
+    border-radius:2px;
+    transition:0.3s;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(1){
+    transform:rotate(45deg) translateY(12px);
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(2){
+    opacity:0;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(3){
+    transform:rotate(-45deg) translateY(-12px);
+}
+
+.nav-mobile-menu{
+    display:none;
+    position:fixed;
+    top:90px;
+    left:50%;
+    transform:translateX(-50%);
+    width:92%;
+    background:linear-gradient(135deg,rgba(255,255,255,0.12),rgba(255,255,255,0.05));
+    backdrop-filter:blur(30px);
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,0.12);
+    padding:24px;
+    gap:12px;
+    flex-direction:column;
+    z-index:9998;
+    box-shadow:0 10px 50px rgba(0,0,0,0.5);
+}
+
+.nav-mobile-menu.active{
+    display:flex;
+}
+
+.nav-mobile-menu a{
+    text-decoration:none;
+    color:#fff;
+    padding:12px 16px;
+    display:flex;
+    align-items:center;
+    border-radius:12px;
+    transition:0.3s;
+    font-size:16px;
+}
+
+.nav-mobile-menu a:hover{
+    background:rgba(255,255,255,0.1);
+}
+
+@media(max-width:768px){
+    .hamburger-menu{
+        display:flex;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- GLOWS -->
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<!-- NAVBAR -->
+
+<<!-- NAVBAR -->
+
+<nav class="navbar">
+
+  <div class="logo-wrap" onclick="window.location.href='index.html'">
+
+    <div class="logo">
+      S
+    </div>
+
+    <div class="logo-text">
+
+      <h1>
+        STAC<span>KLY</span>
+      </h1>
+
+      <p>
+        FUTURE OF FOOD DELIVERY
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="nav-links">
+
+    <a href="index.html">Home</a>
+    <a href="Restaurant.html">Restaurants</a>
+    <a href="collections.html">Collections</a>
+    <a href="offers.html">Offers</a>
+
+  </div>
+
+  <!-- HAMBURGER MENU -->
+  <div class="hamburger-menu" id="hamburger">
+      <div class="hamburger-line"></div>
+      <div class="hamburger-line"></div>
+      <div class="hamburger-line"></div>
+  </div>
+
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="Restaurant.html">Restaurants</a>
+    <a href="collections.html">Collections</a>
+    <a href="offers.html">Offers</a>
+    <a href="login.html">Login</a>
+    <button class="gradient-btn" style="width:100%; margin-top:12px;" onclick="window.location.href='signup.html'">
+        <span>Get Started</span>
+    </button>
+</div>
+
+<!-- MAIN -->
+
+<div class="wrapper">
+
+  <div class="card">
+
+    <div class="error-number">
+      404
+    </div>
+
+    <h2>
+      Page Not Found
+    </h2>
+
+    <div class="description">
+
+      The page you are looking for may have been removed,
+      renamed, or is temporarily unavailable.
+
+    </div>
+
+    <div class="buttons">
+
+      <button
+      class="btn home-btn"
+      onclick="window.location.href='index.html'">
+
+        Back To Home
+
+      </button>
+
+      <button
+      class="btn back-btn"
+      onclick="history.back()">
+
+        Go Back
+
+      </button>
+
+    </div>
+
+    <div class="footer-text">
+      STACKLY • PREMIUM EXPERIENCE
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+  <div class="footer-left">
+
+    <h3>
+      STAC<span>KLY</span>
+    </h3>
+
+    <p>
+      Premium futuristic food delivery experience.
+    </p>
+
+  </div>
+
+  <div class="footer-links">
+
+    <a href="#">About</a>
+    <a href="#">Careers</a>
+    <a href="#">Privacy</a>
+    <a href="#">Support</a>
+
+  </div>
+
+</footer>
+
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
